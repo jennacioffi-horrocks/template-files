@@ -1,0 +1,33 @@
+name: Build Check (PRs to main & dev branches)
+
+# Trigger the workflow on PRs to the main branch
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment (adjust the node version if necessary)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.17'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./ # Set working directory to root of project
+
+      # Step 4: Run the build
+      - name: Run build
+        run: npm run build
+        working-directory: ./ # Set working directory to root of project
