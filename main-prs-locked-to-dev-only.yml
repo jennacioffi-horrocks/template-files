@@ -1,0 +1,27 @@
+name: Restrict PRs to Main from Dev Only
+
+on:
+  pull_request:
+    branches:
+      - "**" # This triggers the action on PRs to any branch
+
+jobs:
+  restrict_prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if PR targets 'main'
+        run: |
+          TARGET_BRANCH=$(jq -r .pull_request.base.ref "$GITHUB_EVENT_PATH")
+          SOURCE_BRANCH=$(jq -r .pull_request.head.ref "$GITHUB_EVENT_PATH")
+
+          # Only enforce checks if the target branch is 'main'
+          if [ "$TARGET_BRANCH" == "main" ]; then
+            if [ "$SOURCE_BRANCH" != "dev" ]; then
+              echo "❌ PRs to 'main' are only allowed from 'dev'. This PR is from '$SOURCE_BRANCH'."
+              exit 1
+            else
+              echo "✅ PR is from 'dev'. Proceeding with checks."
+            fi
+          else
+            echo "ℹ️ This PR is targeting '$TARGET_BRANCH'. No restrictions applied."
+          fi
