@@ -1,9 +1,10 @@
+# NOTE: to re-run workflow when updating the branch PR is pointing to -> push an empty commit (`$ git commit --allow-empty -m "Trigger workflow" && git push`)
 name: Restrict PRs to Main from Dev Only
 
 on:
   pull_request:
     branches:
-      - "**" # This triggers the action on PRs to any branch
+      - '**' # This triggers the action on PRs to any branch
 
 jobs:
   restrict_prs:
