@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../authConfig";
+import { config } from "../utils/config";
 
 // Define the context type for the auth token
 export interface AuthContextType {
@@ -23,6 +24,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const { instance, accounts } = useMsal();
+  const { redirectUri_dev, redirectUri_prod } = config;
   const [token, setToken] = useState<string | null>(null);
 
   const handleLogin = () => {
@@ -32,7 +34,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const handleLogout = () => {
-    const redirectUri = process.env.NODE_ENV === "development" ? "/" : "/";
+    const redirectUri =
+      process.env.NODE_ENV === "development"
+        ? redirectUri_dev
+        : redirectUri_prod;
 
     instance.logoutPopup({
       postLogoutRedirectUri: redirectUri,
