@@ -26,5 +26,6 @@ This repo contains template files to copy from for all projects.
   - `$ npm i --save-dev @types/node`
 - MUI
   - `$ npm install @mui/material @emotion/react @emotion/styled`
+  - (licensing stuff) `$ npm install @mui/x-data-grid-premium @mui/x-license`
 - Router/Routes/Route
   - `npm install react-router-dom`
