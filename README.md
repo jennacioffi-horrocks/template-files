@@ -17,3 +17,10 @@ This repo contains template files to copy from for all projects.
 - [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 - [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
+
+## Useful NPM Packages
+
+- For Microsoft Azure Authentication
+  - `$ npm install @azure/msal-browser @azure/msal-react`
+- For `process.env` in vite + react + typescript projects
+  - `$ npm i --save-dev @types/node`
