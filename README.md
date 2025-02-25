@@ -24,3 +24,7 @@ This repo contains template files to copy from for all projects.
   - `$ npm install @azure/msal-browser @azure/msal-react`
 - For `process.env` in vite + react + typescript projects
   - `$ npm i --save-dev @types/node`
+- MUI
+  - `$ npm install @mui/material @emotion/react @emotion/styled`
+- Router/Routes/Route
+  - `npm install react-router-dom`
