@@ -1,11 +1,15 @@
+import { config } from './utils/config';
+
+const { redirectUri_dev, redirectUri_prod, postLogoutRedirectUri } = config;
+
 let redirectUri: string;
 
 if (process.env.NODE_ENV === 'development') {
   // Set redirectUri to localhost for development
-  redirectUri = 'http://localhost:5173/sites/<Site Name>';
+  redirectUri = redirectUri_dev;
 } else {
   // Set redirectUri for production or other environments
-  redirectUri = 'https://portal.horrocks.com/sites/<Site Name>';
+  redirectUri = redirectUri_prod;
 }
 
 export const msalConfig = {
@@ -13,7 +17,7 @@ export const msalConfig = {
     clientId: '<Application ID>',
     authority: 'https://login.microsoftonline.com/<Tenant ID>',
     redirectUri: redirectUri,
-    postLogoutRedirectUri: 'https://portal.horrocks.com/sites/<Site Name>',
+    postLogoutRedirectUri: postLogoutRedirectUri,
     navigateToLoginRequestUrl: false,
   },
   cache: {
